@@ -7,11 +7,10 @@ const display = document.getElementById("display");
 const laps = document.getElementById("laps");
 
 function formatTime(ms) {
-  const date = new Date(ms);
-  const minutes = String(date.getUTCMinutes()).padStart(2, "0");
-  const seconds = String(date.getUTCSeconds()).padStart(2, "0");
-  const centiseconds = String(Math.floor(date.getUTCMilliseconds() / 10)).padStart(2, "0");
-  return `${minutes}:${seconds}.${centiseconds}`;
+  const minutes = String(Math.floor(ms / 60000)).padStart(2, "0");
+  const seconds = String(Math.floor((ms % 60000) / 1000)).padStart(2, "0");
+  const centiseconds = String(Math.floor((ms % 1000) / 10)).padStart(2, "0");
+  return `${minutes}:${seconds}:${centiseconds}`;
 }
 
 function updateDisplay() {
